@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Text.RegularExpressions;
 using TechTalk.SpecFlow;
 
 namespace gorod.dp.ua.Steps
@@ -14,11 +15,13 @@ namespace gorod.dp.ua.Steps
         IWebDriver chrome;
         AdvertisementPageObject ad_page;
         AdFormPage form_page;
+
         [Given(@"I on the ad page")]
         public void GivenIOnTheAdPage()
         {
             chrome = new ChromeDriver(@"C:\Users\mcsymiv\Desktop\git\chromedriver_win32");
             chrome.Navigate().GoToUrl("https://gorod.dp.ua/gazeta/");
+            chrome.Manage().Window.Maximize();
             ad_page = new AdvertisementPageObject(chrome);
             form_page = new AdFormPage(chrome);
             chrome.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
@@ -39,7 +42,11 @@ namespace gorod.dp.ua.Steps
         [When(@"I fill in all necessary fields")]
         public void WhenIFillInAllNecessaryFields()
         {
-            form_page.FillNecessaryFieldsAd("продать", "2000", "30000", "2000", "Отличное состояние");
+            form_page.OperationFieldInput("продать")
+                .AutoYearFieldInput("2000")
+                .AutoMilesFieldInput("30000")
+                .PriceFieldInput("2000")
+                .DescriptionFieldInput("Отличное состояние");
         }
 
         [When(@"I click on add ad")]
@@ -64,7 +71,11 @@ namespace gorod.dp.ua.Steps
         [When(@"User leaves necessary field empty")]
         public void WhenUserLeavesNecessaryFieldEmpty()
         {
-            form_page.SubmitAdForm();
+            form_page.OperationFieldInput("продать")
+                .AutoYearFieldInput("2000")
+                .AutoMilesFieldInput("30000")
+                .DescriptionFieldInput("Отличное состояние")
+                .SubmitAdForm();
         }
 
         [Then(@"User see red error message")]
@@ -73,10 +84,33 @@ namespace gorod.dp.ua.Steps
             string errorMsg = ad_page.ErrorMessage();
             Assert.IsTrue(errorMsg.Contains("Ошибка"));
         }
-        [AfterScenario]
-        public void ClosePage()
+
+        [Given(@"One ad is created by user")]
+        public void GivenOneAdIsCreatedByUser()
         {
-            chrome.Quit();
+            ad_page.OpenCarAdForm();
+            form_page.OperationFieldInput("продать")
+                .AutoYearFieldInput("2000")
+                .AutoMilesFieldInput("30000")
+                .PriceFieldInput("2000")
+                .DescriptionFieldInput("Отличное состояние")
+                .SubmitAdForm();
+        }
+
+        [When(@"User delete this specific ad")]
+        public void WhenUserDeleteThisSpecificAd()
+        {
+            ad_page.OpenUserAdsPage()
+                .DeleteAd()
+                .AlertConfirm();
+        }
+
+        [Then(@"User ad count is zero")]
+        public void ThenUserAdCountIsZero()
+        {
+            string adCount = ad_page.AdCountNumber();
+            Regex rgx = new Regex("^[0-9]+$");
+            Assert.IsFalse(rgx.IsMatch(adCount));
         }
     }
 }

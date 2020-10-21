@@ -20,6 +20,18 @@ Scenario: Error on skipping necessary fields
 	When User leaves necessary field empty
 	Then User see red error message
 
+<<<<<<< HEAD
+@edit_ad
+Scenario: Edit information of my ad
+	Given ad has been created
+	When I go to page my ads
+	Then I see title on the page my ads
+	When I click on the edit button
+	Then I see title placing a new ad
+	When I edit text and the address of an ad
+	When I click on the share ad
+	Then I see text information like please wait admin accepting
+=======
 @delete_ad
 Scenario: Successfuly delete user ad
 	Given One ad is created by user	
@@ -34,3 +46,4 @@ Scenario: Update user profile information on form
 	Then Phone field is pre-filled with updated data
 
 
+>>>>>>> d6d93ddd50b6f228e081beee6229d3aef6ae82cc

@@ -15,7 +15,12 @@ namespace gorod.dp.ua.Steps
         IWebDriver chrome;
         AdvertisementPageObject ad_page;
         AdFormPage form_page;
+<<<<<<< HEAD
+        EditAdPage editAd_page;
+
+=======
         DeleteAdPage delete_page;
+>>>>>>> d6d93ddd50b6f228e081beee6229d3aef6ae82cc
 
         [Given(@"I on the ad page")]
         public void GivenIOnTheAdPage()
@@ -25,6 +30,7 @@ namespace gorod.dp.ua.Steps
             chrome.Manage().Window.Maximize();
             ad_page = new AdvertisementPageObject(chrome);
             form_page = new AdFormPage(chrome);
+            editAd_page = new EditAdPage(chrome);
             chrome.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
@@ -113,5 +119,61 @@ namespace gorod.dp.ua.Steps
             Regex rgx = new Regex("^[0-9]+$");
             Assert.IsFalse(rgx.IsMatch(adCount));
         }
+
+        //edit ad
+
+        [Given(@"ad has been created")]
+        public void GivenAdHasBeenCreated()
+        {
+            
+        }
+
+        [When(@"I go to page my ads")]
+        public void WhenIGoToPageMyAds()
+        {
+            //editAd_page.ClickOnTheAdHeader();
+            editAd_page.ClickOnTheMyAds();
+        }
+
+        [Then(@"I see title on the page my ads")]
+        public void ThenISeeTitleOnThePageMyAds()
+        {
+            string actualResult = editAd_page.TitleMyAds();
+            Assert.AreEqual("ОБЪЯВЛЕНИЯ", actualResult);
+        }
+
+        [When(@"I click on the edit button")]
+        public void WhenIClickOnTheEditButton()
+        {
+            editAd_page.ClickEditFirstAd();
+        }
+
+        [Then(@"I see title placing a new ad")]
+        public void ThenISeeTitlePlacingANewAd()
+        {
+            string actualResult = editAd_page.TitleMyAdsAcc();
+            Assert.AreEqual("Размещение нового объявления", actualResult);
+        }
+
+        [When(@"I edit text and the address of an ad")]
+        public void WhenIEditTextAndTheAddressOfAnAd()
+        {
+            editAd_page.EditTextAd();
+            editAd_page.EditAddressAd();
+        }
+
+        [When(@"I click on the share ad")]
+        public void WhenIClickOnTheShareAd()
+        {
+            editAd_page.ClickPublishAd();
+        }
+
+        [Then(@"I see text information like please wait admin accepting")]
+        public void ThenISeeTextInformationLikePleaseWaitAdminAccepting()
+        {
+            string actualResult = editAd_page.TextInTheEnd();
+            Assert.AreEqual("Спасибо!", actualResult);
+        }
+
     }
 }

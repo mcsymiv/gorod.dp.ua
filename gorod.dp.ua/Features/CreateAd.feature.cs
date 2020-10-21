@@ -180,6 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+<<<<<<< HEAD
         [NUnit.Framework.DescriptionAttribute("Edit information of my ad")]
         [NUnit.Framework.CategoryAttribute("edit_ad")]
         public virtual void EditInformationOfMyAd()
@@ -188,6 +189,16 @@ this.ScenarioInitialize(scenarioInfo);
                     "edit_ad"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit information of my ad", null, tagsOfScenario, argumentsOfScenario);
+=======
+        [NUnit.Framework.DescriptionAttribute("Successfuly delete user ad")]
+        [NUnit.Framework.CategoryAttribute("delete_ad")]
+        public virtual void SuccessfulyDeleteUserAd()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "delete_ad"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successfuly delete user ad", null, tagsOfScenario, argumentsOfScenario);
+>>>>>>> d6d93ddd50b6f228e081beee6229d3aef6ae82cc
 #line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -212,6 +223,7 @@ this.ScenarioInitialize(scenarioInfo);
  this.FeatureBackground();
 #line hidden
 #line 25
+<<<<<<< HEAD
  testRunner.Given("ad has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 26
@@ -234,6 +246,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 32
  testRunner.Then("I see text information like please wait admin accepting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+=======
+ testRunner.Given("One ad is created by user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 26
+ testRunner.When("User delete this specific ad", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 27
+ testRunner.Then("User ad count is zero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+>>>>>>> d6d93ddd50b6f228e081beee6229d3aef6ae82cc
 #line hidden
             }
             this.ScenarioCleanup();

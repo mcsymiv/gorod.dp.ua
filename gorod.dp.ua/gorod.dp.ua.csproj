@@ -121,7 +121,9 @@
   <ItemGroup>
     <Compile Include="POMs\AdFormPage.cs" />
     <Compile Include="POMs\AdvertisementPageObject.cs" />
+    <Compile Include="POMs\DeleteAdPage.cs" />
     <Compile Include="POMs\EditAdPage.cs" />
+    <Compile Include="POMs\EditUserInfoPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\AdvertisementSteps.cs" />
   </ItemGroup>

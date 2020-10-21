@@ -9,6 +9,7 @@ namespace gorod.dp.ua.POMs
 {
     public class EditAdPage
     {
+
         IWebDriver _driver;
         public EditAdPage(IWebDriver driver)
         {
@@ -80,5 +81,6 @@ namespace gorod.dp.ua.POMs
             string temp = _driver.FindElement(_textAfterEdit).Text;
             return temp;
         }
+
     }
 }

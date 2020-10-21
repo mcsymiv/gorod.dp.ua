@@ -19,3 +19,14 @@ Scenario: Error on skipping necessary fields
 	Given Ad form is open
 	When User leaves necessary field empty
 	Then User see red error message
+
+@edit_ad
+Scenario: Edit information of my ad
+	Given ad has been created
+	When I go to page my ads
+	Then I see title on the page my ads
+	When I click on the edit button
+	Then I see title placing a new ad
+	When I edit text and the address of an ad
+	When I click on the share ad
+	Then I see text information like please wait admin accepting

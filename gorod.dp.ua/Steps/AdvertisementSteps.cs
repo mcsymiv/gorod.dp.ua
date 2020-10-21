@@ -15,6 +15,7 @@ namespace gorod.dp.ua.Steps
         IWebDriver chrome;
         AdvertisementPageObject ad_page;
         AdFormPage form_page;
+        DeleteAdPage deleteAd_page;
 
         [Given(@"I on the ad page")]
         public void GivenIOnTheAdPage()
@@ -100,7 +101,7 @@ namespace gorod.dp.ua.Steps
         [When(@"User delete this specific ad")]
         public void WhenUserDeleteThisSpecificAd()
         {
-            ad_page.OpenUserAdsPage()
+            deleteAd_page.OpenUserAdsPage()
                 .DeleteAd()
                 .AlertConfirm();
         }
@@ -108,7 +109,7 @@ namespace gorod.dp.ua.Steps
         [Then(@"User ad count is zero")]
         public void ThenUserAdCountIsZero()
         {
-            string adCount = ad_page.AdCountNumber();
+            string adCount = deleteAd_page.AdCountNumber();
             Regex rgx = new Regex("^[0-9]+$");
             Assert.IsFalse(rgx.IsMatch(adCount));
         }

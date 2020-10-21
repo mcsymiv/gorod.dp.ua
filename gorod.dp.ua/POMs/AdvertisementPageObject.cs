@@ -24,8 +24,6 @@ namespace gorod.dp.ua
         By _carAdLink = By.CssSelector("a['href=https://gorod.dp.ua/gazeta/nove.php?type=auto&cat_id=2']");
         By _thankYouMessage = By.CssSelector("div[class='block_norm']");
         By _errorMessage = By.CssSelector("div.content-row:nth-child(10) > div:nth-child(1) > table:nth-child(5) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > font:nth-child(2) > b:nth-child(1)");
-        By _userAds = By.LinkText("Мои объявления");
-        By _deleteButtonIcon = By.CssSelector("a[href*='https://gorod.dp.ua/gazeta/nove.php?del&id=']");
         public AdvertisementPageObject UserAuthorize(string login, string password)
         {
             _driver.FindElement(_cookieButton).Click();
@@ -50,25 +48,6 @@ namespace gorod.dp.ua
         {
             return _driver.FindElement(_errorMessage).Text;
         }
-        public AdvertisementPageObject OpenUserAdsPage()
-        {
-            _driver.FindElement(_userAds).Click();
-            return this;
-        }
-        public AdvertisementPageObject DeleteAd()
-        {
-            _driver.FindElement(_deleteButtonIcon).Click();
-            return this;
-        }
-        public AdvertisementPageObject AlertConfirm()
-        {
-            var confirm =_driver.SwitchTo().Alert();
-            confirm.Accept();
-            return this;
-        }
-        public string AdCountNumber()
-        {
-            return _driver.FindElement(_userAds).Text;
-        }
+
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace gorod.dp.ua.POMs
 {
-    public class EditAdPage
+    public class EditUserInfoPage
     {
 
     }

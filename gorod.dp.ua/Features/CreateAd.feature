@@ -19,3 +19,18 @@ Scenario: Error on skipping necessary fields
 	Given Ad form is open
 	When User leaves necessary field empty
 	Then User see red error message
+
+@delete_ad
+Scenario: Successfuly delete user ad
+	Given One ad is created by user	
+	When User delete this specific ad
+	Then User ad count is zero
+
+@edit_profile_info
+Scenario: Update user profile information on form
+	Given User is on profile page
+	When User updates their phone number
+	When User opens ad form for creation
+	Then Phone field is pre-filled with updated data
+
+

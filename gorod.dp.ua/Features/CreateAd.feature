@@ -26,3 +26,11 @@ Scenario: Successfuly delete user ad
 	When User delete this specific ad
 	Then User ad count is zero
 
+@edit_profile_info
+Scenario: Update user profile information on form
+	Given User is on profile page
+	When User updates their phone number
+	When User opens ad form for creation
+	Then Phone field is pre-filled with updated data
+
+
